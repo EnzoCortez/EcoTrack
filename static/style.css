@@ -1,0 +1,14 @@
+body {
+    background-color: #f0fdf4;
+    font-family: 'Segoe UI', sans-serif;
+}
+.card {
+    box-shadow: 0px 0px 10px rgba(0, 128, 0, 0.2);
+    border-radius: 12px;
+}
+.btn-success {
+    background-color: #198754 !important;
+}
+.table thead {
+    background-color: #d1e7dd;
+}

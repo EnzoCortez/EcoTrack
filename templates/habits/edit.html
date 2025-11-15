@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-success">Editar hábito</h3>
+<form method="POST">
+  <input class="form-control mb-3" type="text" name="name" value="{{ habit.name }}" required>
+  <input class="form-control mb-3" type="text" name="description" value="{{ habit.description }}">
+  <input class="form-control mb-3" type="text" name="frequency" value="{{ habit.frequency }}">
+  <button class="btn btn-success">Actualizar</button>
+  <a href="{{ url_for('habits.dashboard') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

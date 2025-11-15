@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-success">Nuevo hábito ecológico</h3>
+<form method="POST">
+  <input class="form-control mb-3" type="text" name="name" placeholder="Nombre del hábito" required>
+  <input class="form-control mb-3" type="text" name="description" placeholder="Descripción">
+  <select class="form-select mb-3" name="frequency">
+    <option>Diario</option>
+    <option>Semanal</option>
+    <option>Mensual</option>
+  </select>
+  <button class="btn btn-success">Guardar</button>
+  <a href="{{ url_for('habits.dashboard') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
