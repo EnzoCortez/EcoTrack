@@ -102,7 +102,7 @@
     <div class="admin-box">
         <h3>Acceso Administrativo (Modo Demo)</h3>
         <p>Para acceder al panel administrativo utiliza el parámetro <b>?as_admin=1</b>.</p>
-        <a href="/admin/presupuesto?as_admin=1" class="btn">Panel Administrativo</a>
+        <a href="{{ url_for('admin_auth.login') }}" class="btn">Panel Administrativo</a>
     </div>
 </div>
 

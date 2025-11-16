@@ -1,20 +1,31 @@
-{% extends "layout.html" %}
-{% block content %}
-  <h3>Administrar Presupuesto Municipal</h3>
-  <form method="POST">
-    {{ form.hidden_tag() }}
-    <div class="mb-3">
-      {{ form.monto_total.label(class="form-label") }}
-      {{ form.monto_total(class="form-control", placeholder="0.00") }}
-      {% for e in form.monto_total.errors %}<div class="text-danger">{{ e }}</div>{% endfor %}
-    </div>
-    <button class="btn btn-primary">{{ form.submit.label.text }}</button>
-  </form>
+{% extends "admin/admin_layout.html" %}
 
-  {% if presupuesto %}
+{% block content %}
+<h1>Presupuesto Municipal</h1>
+
+<div class="card">
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <label>Monto del presupuesto:</label>
+        {{ form.monto_total(class="input") }}
+
+        {% for error in form.monto_total.errors %}
+        <p style="color:red;">{{ error }}</p>
+        {% endfor %}
+
+        <br><br>
+
+        {{ form.submit(class="btn") }}
+    </form>
+
+    {% if presupuesto %}
     <hr>
-    <h5>Último presupuesto registrado</h5>
-    <p>Monto: <strong>{{ presupuesto.monto_total }}</strong></p>
+    <h3>Último Presupuesto Registrado</h3>
+    <p><strong>{{ presupuesto.monto_total }}</strong></p>
     <p>Fecha: {{ presupuesto.fecha_actualizacion }}</p>
-  {% endif %}
+    {% endif %}
+</div>
+
 {% endblock %}

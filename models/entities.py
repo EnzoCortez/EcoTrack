@@ -5,12 +5,17 @@ from models import db
 
 class Usuario(UserMixin, db.Model):
     __tablename__ = "Usuario"
-    id_usuario = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    id_usuario = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    correo = db.Column(db.String(100), unique=True, nullable=False)
-    contrasena = db.Column(db.String(100), nullable=False)
-    rol = db.Column(db.String(20), default="Ciudadano")
+    correo = db.Column(db.String(200), unique=True, nullable=False)
+    contrasena = db.Column(db.String(500), nullable=False)
+    rol = db.Column(db.String(50), default="Usuario")
     fecha_registro = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def get_id(self):
+        """Flask-Login necesita esto para identificar al usuario."""
+        return str(self.id_usuario)
 
 
 class Categoria(db.Model):

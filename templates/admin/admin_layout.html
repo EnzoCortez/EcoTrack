@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EkoTrack Admin</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: #1b5e20;
+            color: white;
+            position: fixed;
+            height: 100vh;
+            padding-top: 30px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #2e7d32;
+        }
+
+        /* Content */
+        .content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #1b5e20;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #555;
+            font-size: 0.9rem;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="{{ url_for('admin.presupuesto', as_admin=1) }}">Presupuesto Municipal</a>
+        <a href="{{ url_for('admin.matriz', as_admin=1) }}">Matriz de Criticidad</a>
+        <a href="{{ url_for('admin.intervencion', as_admin=1) }}">Intervenciones</a>
+        <a href="{{ url_for('auth.logout') }}">Cerrar Sesión</a>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        EkoTrack Admin • Proyecto académico 2025
+    </footer>
+
+</body>
+
+</html>

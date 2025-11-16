@@ -1,25 +1,34 @@
-{% extends "layout.html" %}
-{% block content %}
-  <h3>Gestionar Matriz de Criticidad</h3>
-  <form method="POST">
-    {{ form.hidden_tag() }}
-    <div class="mb-3">
-      {{ form.id_categoria.label }} {{ form.id_categoria(class="form-select") }}
-    </div>
-    <div class="mb-3">
-      {{ form.id_criticidad.label }} {{ form.id_criticidad(class="form-select") }}
-    </div>
-    <div class="mb-3">
-      {{ form.puntaje_total.label }} {{ form.puntaje_total(class="form-control") }}
-    </div>
-    <button class="btn btn-primary">{{ form.submit.label.text }}</button>
-  </form>
+{% extends "admin/admin_layout.html" %}
 
-  <hr>
-  <h5>Matrices existentes</h5>
-  <ul>
-    {% for m in matrices %}
-      <li>#{{ m.id_matriz }} - Cat: {{ m.id_categoria }} - Crit: {{ m.id_criticidad }} - Puntaje: {{ m.puntaje_total }}</li>
-    {% endfor %}
-  </ul>
+{% block content %}
+<h1>Matriz de Criticidad</h1>
+
+<div class="card">
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <label>Categoría:</label>
+        {{ form.id_categoria(class="input") }}
+
+        <label>Nivel de criticidad:</label>
+        {{ form.id_criticidad(class="input") }}
+
+        <label>Puntaje Total:</label>
+        {{ form.puntaje_total(class="input") }}
+
+        <br><br>
+        {{ form.submit(class="btn") }}
+    </form>
+</div>
+
+<hr>
+<h3>Matrices Registradas</h3>
+
+<ul>
+{% for m in matrices %}
+    <li>Categoria {{ m.id_categoria }} - Criticidad {{ m.id_criticidad }} → {{ m.puntaje_total }}</li>
+{% endfor %}
+</ul>
+
 {% endblock %}

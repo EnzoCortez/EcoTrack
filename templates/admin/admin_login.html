@@ -1,0 +1,20 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block content %}
+<div class="card" style="max-width:400px; margin:auto; margin-top:80px;">
+    <h2 style="text-align:center;">Login Administrador</h2>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <label>Correo</label>
+        {{ form.correo(class="input") }}
+
+        <label>Contraseña</label>
+        {{ form.contrasena(class="input") }}
+
+        <br><br>
+        {{ form.submit(class="btn") }}
+    </form>
+</div>
+{% endblock %}

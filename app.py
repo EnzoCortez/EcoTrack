@@ -8,10 +8,11 @@ from models import db
 from controllers.auth_controller import auth_bp
 from controllers.habit_controller import habit_bp
 from controllers.admin_controller import admin_bp
+from controllers.admin_auth_controller import admin_auth_bp
 
 
 # --------------------------
-# CREATE APP (única versión)
+# CREATE APP
 # --------------------------
 def create_app():
     app = Flask(__name__)
@@ -22,19 +23,20 @@ def create_app():
 
     # Inicializar LoginManager
     login_manager = LoginManager()
-    login_manager.login_view = "auth.login"
+    login_manager.login_view = "auth.login"  # login de usuarios normales
     login_manager.init_app(app)
 
     @login_manager.user_loader
     def load_user(id_usuario):
         return Usuario.query.get(int(id_usuario))
 
-    # Registrar blueprints
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(habit_bp)
-    app.register_blueprint(admin_bp)
+    # Registrar Blueprints (ORDEN CORRECTO)
+    app.register_blueprint(auth_bp)         # login público
+    app.register_blueprint(admin_auth_bp)   # login administrador
+    app.register_blueprint(admin_bp)        # panel admin
+    app.register_blueprint(habit_bp)        # módulo hábitos
 
-    # RUTA PRINCIPAL
+    # Ruta principal
     @app.route("/")
     def home():
         return render_template("index.html")
