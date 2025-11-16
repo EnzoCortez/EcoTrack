@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EkoTrack – Gestión Ambiental Inteligente</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        header {
+            background: #2e7d32;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.4rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background: #388e3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #2e7d32;
+        }
+
+        .admin-box {
+            margin-top: 40px;
+            padding: 15px;
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 10px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 20px;
+            background: #333;
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>EkoTrack</h1>
+    <p style="margin-top:10px;">Plataforma de Reportes Ambientales y Priorización Inteligente</p>
+</header>
+
+<div class="container">
+    <p>
+        EkoTrack es un sistema diseñado para que los ciudadanos reporten problemas ambientales y 
+        que el municipio pueda priorizarlos automáticamente mediante una matriz de criticidad, 
+        optimizando la asignación de presupuesto e intervenciones.
+    </p>
+
+    <div class="btn-container">
+        <a href="{{ url_for('auth.login') }}" class="btn">Iniciar Sesión</a>
+        <a href="{{ url_for('auth.register') }}" class="btn">Registrarse</a>
+        <a href="{{ url_for('habit.dashboard') }}" class="btn">Panel Usuario</a>
+    </div>
+
+    <div class="admin-box">
+        <h3>Acceso Administrativo (Modo Demo)</h3>
+        <p>Para acceder al panel administrativo utiliza el parámetro <b>?as_admin=1</b>.</p>
+        <a href="/admin/presupuesto?as_admin=1" class="btn">Panel Administrativo</a>
+    </div>
+</div>
+
+<footer>
+    © {{ 2025 }} EkoTrack — Proyecto académico desarrollado por Enzo Cortez
+</footer>
+
+</body>
+</html>
