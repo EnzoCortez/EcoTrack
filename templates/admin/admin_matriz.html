@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h3>Gestionar Matriz de Criticidad</h3>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+      {{ form.id_categoria.label }} {{ form.id_categoria(class="form-select") }}
+    </div>
+    <div class="mb-3">
+      {{ form.id_criticidad.label }} {{ form.id_criticidad(class="form-select") }}
+    </div>
+    <div class="mb-3">
+      {{ form.puntaje_total.label }} {{ form.puntaje_total(class="form-control") }}
+    </div>
+    <button class="btn btn-primary">{{ form.submit.label.text }}</button>
+  </form>
+
+  <hr>
+  <h5>Matrices existentes</h5>
+  <ul>
+    {% for m in matrices %}
+      <li>#{{ m.id_matriz }} - Cat: {{ m.id_categoria }} - Crit: {{ m.id_criticidad }} - Puntaje: {{ m.puntaje_total }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

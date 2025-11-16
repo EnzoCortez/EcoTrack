@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h3>Crear Intervención</h3>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+      {{ form.id_reporte.label }} {{ form.id_reporte(class="form-select", id="selectReporte") }}
+    </div>
+    <div id="reporteInfo" class="mb-3" style="display:none;">
+      <strong>Detalle del reporte seleccionado:</strong>
+      <p>Categoría: <span id="catText"></span></p>
+      <p>Criticidad: <span id="critText"></span></p>
+    </div>
+
+    <div class="mb-3">
+      {{ form.prioridad.label }} {{ form.prioridad(class="form-control") }}
+    </div>
+    <div class="mb-3">
+      {{ form.estado.label }} {{ form.estado(class="form-select") }}
+    </div>
+    <div class="mb-3">
+      {{ form.fecha_programada.label }} {{ form.fecha_programada(class="form-control") }}
+    </div>
+    <button class="btn btn-primary">{{ form.submit.label.text }}</button>
+  </form>
+
+  <script>
+    document.getElementById('selectReporte').addEventListener('change', function() {
+      const id = this.value;
+      if (!id) { document.getElementById('reporteInfo').style.display='none'; return; }
+      fetch('/api/reporte/' + id)
+        .then(r=>r.json())
+        .then(data=>{
+          document.getElementById('reporteInfo').style.display='block';
+          // Mostrar ids por ahora. En producción mapea los ids a nombres en el servidor o solicita nombre en la API.
+          document.getElementById('catText').textContent = data.categoria;
+          document.getElementById('critText').textContent = data.criticidad;
+        }).catch(e=>{
+          console.error(e);
+        });
+    });
+  </script>
+{% endblock %}
